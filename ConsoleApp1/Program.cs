@@ -11,10 +11,12 @@ namespace TaskStatusProgram
         {
             while (true)
             {
-                Console.WriteLine("Task Status Program");
+                Console.WriteLine("--- Task Status Program ---");
                 Console.WriteLine("1. Add Task");
                 Console.WriteLine("2. View Tasks");
                 Console.WriteLine("3. Exit");
+
+                Console.WriteLine();
 
                 Console.Write("Choose an option: ");
                 string option = Console.ReadLine();
@@ -31,13 +33,12 @@ namespace TaskStatusProgram
 
                 else if (option == "3")
                 {
-                    Console.WriteLine("Thank you for using the code:)) ");
-                    break;
+                    addExit();
                 }
 
                 else
                 {
-                    Console.WriteLine("Please only input what on the menu, thank you:))");
+                    addError();
                 }
 
                 Console.WriteLine();
@@ -52,14 +53,29 @@ namespace TaskStatusProgram
             taskCount++;
 
             Console.WriteLine("Task Added:)) ");
+
+            Console.WriteLine("----------------------");
         }
         static void addView()
         {
-            Console.WriteLine("Here's the task/s: ");
+            Console.WriteLine("---- Here's the task/s ----");
             for (int i = 0; i < taskCount; i++)
             {
                 Console.WriteLine("* " + tasks[i]);
             }
+
+            Console.WriteLine("----------------------");
+        }
+        static void addExit()
+        {
+            Console.WriteLine("Thank you for using the code:)) ");
+
+            Console.WriteLine("----------------------");
+        }
+
+        static void addError()
+        {
+            Console.WriteLine("Please only input what on the menu, thank you:))");
         }
     }
 }
