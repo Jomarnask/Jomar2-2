@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;   
 
 namespace TaskStatusProgram
 {
     class Program
     {
-        static string[] tasks = new string[100];
-        static int taskCount = 0;
+       static List<string> tasks = new List<string>();  
 
         static void Main(string[] args)
         {
@@ -14,7 +14,10 @@ namespace TaskStatusProgram
                 Console.WriteLine("--- Task Status Program ---");
                 Console.WriteLine("1. Add Task");
                 Console.WriteLine("2. View Tasks");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Edit Tasks");
+                Console.WriteLine("4. Delete Tasks");
+                Console.WriteLine("5. Mark Tasks");
+                Console.WriteLine("6. Exit");
 
                 Console.WriteLine();
 
@@ -30,8 +33,19 @@ namespace TaskStatusProgram
                 {
                     addView();
                 }
-
                 else if (option == "3")
+                {
+                    addEdit();
+                }
+                else if (option == "4")
+                {
+                    addDelete();
+                }
+                else if (option == "5")
+                {
+                    addMarkTask();
+                }
+                else if (option == "6")
                 {
                     addExit();
                 }
@@ -65,6 +79,53 @@ namespace TaskStatusProgram
             }
 
             Console.WriteLine("----------------------");
+        }
+        static void addEdit()
+        {
+            Console.WriteLine();
+            addView();
+            Console.WriteLine();
+
+            Console.write("Enter the number of the task you want to edit: ");   
+            int editNum = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Enter the new task: ");
+            string newTask = Console.ReadLine();
+
+            tasks[editNum - 1] = newTask;   
+
+            Console.WriteLine("Task Edited:)) ");
+        }
+        static void addDelete()
+        {
+            Console.WriteLine();
+            addView();
+            Console.WriteLine();
+
+            Console.write("Enter the number of the task you want to edit: ");
+            int deleteNum = Convert.ToInt32(Console.ReadLine());
+
+            //tasks[deleteNum - 1];
+
+            tasks.RemoveAt[deleteNum - 1];  
+
+            Console.WriteLine("Task Deleted:)) ");  
+        }
+        static void addMarkTask()
+        {
+            Console.WriteLine();
+            addView();
+            Console.WriteLine();
+
+            Console.write("Enter the number of the task you want to edit: ");
+            int deleteNum = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter status (Done/Not Done): ");
+            string status = Console.ReadLine();
+
+            tasks[deleteNum - 1] = tasks[deleteNum - 1] + " - " + status;
+
+            Console.WriteLine("Task Marked:)) ");   
         }
         static void addExit()
         {
