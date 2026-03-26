@@ -1,39 +1,62 @@
-﻿namespace TaskAppService
+﻿using TaskModels;
+using TaskDataAccess;
+
+namespace TaskAppService
 {
     public class TaskAppService
     {
-        public void addTask(List<string> tasks, string task)
+        private TaskRepository _repo = new TaskRepository();
+
+        public List<TaskItem> GetTasks()
         {
-            tasks.Add(task + " [Not Done]");  
+            return _repo.Load();
         }
 
-        public void addView(List<string> tasks)
+        public void addTask(string name)
         {
-
+            var tasks = _repo.Load();
+            tasks.Add(new TaskItem
+            {
+                Id = tasks.Count + 1,
+                Name = name,
+                Status = "Not Done"
+            });
+            _repo.Save(tasks);
         }
 
-        public void addEdit(List<string> tasks, int index, string newTask)
+        public void addEdit(int index, string newName)
         {
-            if (index >= 0 && index < tasks.Count)
-                tasks[index] = newTask;
-        }
-
-        public void addDelete(List<string> tasks, int index)
-        {
-            if (index >= 0 && index < tasks.Count)
-                tasks.RemoveAt(index);
-        }
-
-        public void addMarkTask(List<string> tasks, int index, string status)
-        {
+            var tasks = _repo.Load();
             if (index >= 0 && index < tasks.Count)
             {
-                int bracketIndex = tasks[index].IndexOf(" [");
-                if (bracketIndex >= 0)
-                    tasks[index] = tasks[index].Substring(0, bracketIndex);
-
-                tasks[index] = tasks[index] + " [" + status + "]";
+                tasks[index].Name = newName;
+                _repo.Save(tasks);
             }
+        }
+
+        public void addDelete(int index)
+        {
+            var tasks = _repo.Load();
+            if (index >= 0 && index < tasks.Count)
+            {
+                tasks.RemoveAt(index);
+                _repo.Save(tasks);
+            }
+        }
+
+        public bool addMarkTask(int index, string status)
+        {
+            var tasks = _repo.Load();
+            if (index >= 0 && index < tasks.Count)
+            {
+                if (tasks[index].Status == status)
+                    return false;
+
+                tasks[index].Status = status;
+                _repo.Save(tasks);
+                return true;
+            }
+            return false;
         }
     }
 }
