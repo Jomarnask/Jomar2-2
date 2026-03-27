@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11620.152 stable
+VisualStudioVersion = 18.4.11620.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{5863B731-E138-40F7-8BC3-A4438C728B02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAppService", "..\TaskAppService\TaskAppService.csproj", "{056691F0-4854-41E1-957E-6C72717037D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskModel", "..\TaskModel\TaskModel.csproj", "{EB762B04-3A84-4588-A6DC-ABD234C94956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskDataAccess", "..\TaskDataAccess\TaskDataAccess.csproj", "{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{056691F0-4854-41E1-957E-6C72717037D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{056691F0-4854-41E1-957E-6C72717037D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{056691F0-4854-41E1-957E-6C72717037D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB762B04-3A84-4588-A6DC-ABD234C94956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB762B04-3A84-4588-A6DC-ABD234C94956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB762B04-3A84-4588-A6DC-ABD234C94956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB762B04-3A84-4588-A6DC-ABD234C94956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

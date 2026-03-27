@@ -1,4 +1,4 @@
-﻿using TaskModels;
+﻿using TaskModel;
 using TaskDataAccess;
 
 namespace TaskAppService
