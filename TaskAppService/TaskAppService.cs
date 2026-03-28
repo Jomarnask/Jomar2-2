@@ -1,62 +1,35 @@
-﻿using TaskModel;
-using TaskDataAccess;
+﻿using TaskDataAccess;
+using TaskModel;
 
 namespace TaskAppService
 {
     public class TaskAppService
     {
-        private TaskRepository _repo = new TaskRepository();
+        private TaskDBData _db = new TaskDBData();
 
         public List<TaskItem> GetTasks()
         {
-            return _repo.Load();
+            return _db.GetAll();
         }
 
         public void addTask(string name)
         {
-            var tasks = _repo.Load();
-            tasks.Add(new TaskItem
-            {
-                Id = tasks.Count + 1,
-                Name = name,
-                Status = "Not Done"
-            });
-            _repo.Save(tasks);
+            _db.Add(name);
         }
 
-        public void addEdit(int index, string newName)
+        public void addEdit(int id, string newName)
         {
-            var tasks = _repo.Load();
-            if (index >= 0 && index < tasks.Count)
-            {
-                tasks[index].Name = newName;
-                _repo.Save(tasks);
-            }
+            _db.Edit(id, newName);
         }
 
-        public void addDelete(int index)
+        public void addDelete(int id)
         {
-            var tasks = _repo.Load();
-            if (index >= 0 && index < tasks.Count)
-            {
-                tasks.RemoveAt(index);
-                _repo.Save(tasks);
-            }
+            _db.Delete(id);
         }
 
-        public bool addMarkTask(int index, string status)
+        public bool addMarkTask(int id, string status)
         {
-            var tasks = _repo.Load();
-            if (index >= 0 && index < tasks.Count)
-            {
-                if (tasks[index].Status == status)
-                    return false;
-
-                tasks[index].Status = status;
-                _repo.Save(tasks);
-                return true;
-            }
-            return false;
+            return _db.Mark(id, status);
         }
     }
 }

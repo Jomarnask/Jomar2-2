@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using TaskModel;
-using TaskModel;
 
 namespace TaskDataAccess
 {
