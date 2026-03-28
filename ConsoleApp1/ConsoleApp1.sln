@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.4.11620.152
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36930.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{5863B731-E138-40F7-8BC3-A4438C728B02}"
 EndProject
@@ -10,6 +10,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskModel", "..\TaskModel\TaskModel.csproj", "{EB762B04-3A84-4588-A6DC-ABD234C94956}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskDataAccess", "..\TaskDataAccess\TaskDataAccess.csproj", "{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL17.SQLEXPRESS02\MSSQL\Backup\Tasks.bak = ..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL17.SQLEXPRESS02\MSSQL\Backup\Tasks.bak
+		bin\Debug\net8.0\tasks.json = bin\Debug\net8.0\tasks.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
