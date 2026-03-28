@@ -79,6 +79,7 @@ namespace TaskStatusProgram
 
                     Console.Write("Enter the number of the task you want to mark: ");
                     int markNum = Convert.ToInt32(Console.ReadLine());
+
                     Console.Write("Enter status (Done/Not Done): ");
                     string status = Console.ReadLine();
 
@@ -88,22 +89,14 @@ namespace TaskStatusProgram
                     }
                     else
                     {
-                        bool success = taskApp.addMarkTask(markNum - 1, status);
+                      
+                        int actualId = tasks[markNum - 1].Id;
+                        bool success = taskApp.addMarkTask(actualId, status);
                         if (success)
                             Console.WriteLine("Task Marked:)) ");
                         else
                             Console.WriteLine("Task is already marked as " + status + "!");
                     }
-                    Console.WriteLine("------------------------");
-                }
-                else if (option == "6")
-                {
-                    Console.WriteLine("Goodbye!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid option. Try again.");
                     Console.WriteLine("------------------------");
                 }
             }
