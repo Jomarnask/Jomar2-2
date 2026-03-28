@@ -99,6 +99,16 @@ namespace TaskStatusProgram
                     }
                     Console.WriteLine("------------------------");
                 }
+                else if (option == "6")
+                {
+                    Console.WriteLine("Goodbye!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option. Try again.");
+                    Console.WriteLine("------------------------");
+                }
             }
         }
     }
