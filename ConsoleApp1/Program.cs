@@ -25,11 +25,11 @@ namespace TaskStatusProgram
 
                 if (option == "1")
                 {
-                    Console.Write("Enter Here: ");
-                    string name = Console.ReadLine();
-                    taskApp.addTask(name);
-                    Console.WriteLine("Task Added:)) ");
-                    Console.WriteLine("------------------------");
+                   Console.Write("Enter Here: ");
+                   string task = Console.ReadLine();
+                   string message = taskApp.addTask(task);
+                   Console.WriteLine(message);
+                   Console.WriteLine("------------------------");
                 }
                 else if (option == "2")
                 {
