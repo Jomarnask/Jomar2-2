@@ -7,9 +7,15 @@ namespace TaskAppService
     {
         private TaskDBData _db = new TaskDBData();
 
-        public List<TaskItem> GetTasks()
+       public string addTask(string task)
         {
-            return _db.GetAll();
+          if (string.IsNullOrWhiteSpace(task))
+          {
+          return "Task cannot be empty!";
+          }
+
+          _db.Add(task);
+          return "Task added successfully!";
         }
 
         public void addTask(string name)
