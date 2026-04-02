@@ -25,12 +25,6 @@ namespace TaskAppService
           }    
             return _db.GetAll();
         }    
-
-        public void addTask(string name)
-        {
-            _db.Add(name);
-        }
-
         public void addEdit(int id, string newName)
         {
             _db.Edit(id, newName);
