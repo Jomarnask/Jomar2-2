@@ -17,6 +17,10 @@ namespace TaskAppService
           _db.Add(task);
           return "Task added successfully!";
         }
+        public List<TaskItem> GetTasks()
+        {
+            return _db.GetAll();
+        }    
 
         public void addTask(string name)
         {
