@@ -19,10 +19,6 @@ namespace TaskAppService
         }
         public List<TaskItem> GetTasks()
         {
-          if (tasks.Count == 0)
-          {
-           return "No existing task/s";
-          }    
             return _db.GetAll();
         }    
         public void addEdit(int id, string newName)
