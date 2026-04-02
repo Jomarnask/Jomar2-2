@@ -1,4 +1,4 @@
-﻿using TaskDataAccess;
+using TaskDataAccess;
 using TaskModel;
 
 namespace TaskAppService
@@ -7,28 +7,43 @@ namespace TaskAppService
     {
         private TaskDBData _db = new TaskDBData();
 
-       public string addTask(string task)
-        {
-          if (string.IsNullOrWhiteSpace(task))
-          {
-          return "Task cannot be empty!";
-          }
-
-          _db.Add(task);
-          return "Task added successfully!";
-        }
         public List<TaskItem> GetTasks()
         {
             return _db.GetAll();
-        }    
-        public void addEdit(int id, string newName)
-        {
-            _db.Edit(id, newName);
         }
 
-        public void addDelete(int id)
+        public string addTask(string task)
         {
+            if (string.IsNullOrWhiteSpace(task))
+            {
+                return "Task cannot be empty!";
+            }
+            _db.Add(task);
+            return "Task added successfully!";
+        }
+
+        public string addEdit(int id, string newName)
+        {
+            if (id <= 0)
+            {
+                return "Invalid id!";
+            }
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                return "Task cannot be empty!";
+            }
+            _db.Edit(id, newName);
+            return "Task edited successfully!";
+        }
+
+        public string addDelete(int id)
+        {
+            if (id <= 0)
+            {
+                return "Invalid id!";
+            }
             _db.Delete(id);
+            return "Task deleted successfully!";
         }
 
         public bool addMarkTask(int id, string status)
