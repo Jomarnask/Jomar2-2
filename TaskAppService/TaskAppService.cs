@@ -19,6 +19,10 @@ namespace TaskAppService
         }
         public List<TaskItem> GetTasks()
         {
+          if (string.IsNullOrWhiteSpaces(GetTask)
+          {
+           return "No existing task/s";
+          }    
             return _db.GetAll();
         }    
 
