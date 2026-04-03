@@ -5,26 +5,45 @@ namespace TaskAppService
 {
     public class TaskAppService
     {
-        private TaskDBData _db = new TaskDBData();
+        private TaskJSONData _db = new TaskJSONData();
 
         public List<TaskItem> GetTasks()
         {
             return _db.GetAll();
         }
 
-        public void addTask(string name)
+        public string addTask(string task)
         {
-            _db.Add(name);
+            if (string.IsNullOrWhiteSpace(task)) 
+            {
+                return "Task cannot be empty";
+            }
+            _db.Add(task);
+            return "Task added successful";
         }
 
-        public void addEdit(int id, string newName)
+        public string addEdit(int id, string newName)
         {
+            if(id <= 0)
+            {
+                return "Invalid id!";
+            }
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                return "Task cannot be empty";
+            }
             _db.Edit(id, newName);
+            return "Task edited successful";
         }
 
-        public void addDelete(int id)
+        public string addDelete(int id)
         {
+            if (id <= 0) 
+            {
+                return "Invalid id!";
+            }
             _db.Delete(id);
+            return "Task deleted successful";
         }
 
         public bool addMarkTask(int id, string status)

@@ -26,78 +26,110 @@ namespace TaskStatusProgram
                 if (option == "1")
                 {
                     Console.Write("Enter Here: ");
-                    string name = Console.ReadLine();
-                    taskApp.addTask(name);
-                    Console.WriteLine("Task Added:)) ");
+                    string task = Console.ReadLine();
+                    string message = taskApp.addTask(task);
+                    Console.WriteLine(message);
                     Console.WriteLine("------------------------");
                 }
                 else if (option == "2")
                 {
                     var tasks = taskApp.GetTasks();
-                    Console.WriteLine("----- Here's the task/s -----");
-                    for (int i = 0; i < tasks.Count; i++)
-                        Console.WriteLine((i + 1) + ". " + tasks[i]);
+                    if (tasks.Count == 0)
+                    {
+                        Console.WriteLine("No existing task/s to view");
+                    }
+                    else
+                    {
+                        Console.WriteLine("----- Here's the task/s -----");
+                        for (int i = 0; i < tasks.Count; i++)
+                            Console.WriteLine((i + 1) + ". " + tasks[i]);
+                    }
                     Console.WriteLine("------------------------");
                 }
                 else if (option == "3")
                 {
                     var tasks = taskApp.GetTasks();
-                    Console.WriteLine("----- Here's the task/s -----");
-                    for (int i = 0; i < tasks.Count; i++)
-                        Console.WriteLine((i + 1) + ". " + tasks[i]);
-                    Console.WriteLine("------------------------");
+                    if (tasks.Count == 0)
+                    {
+                        Console.WriteLine("No existing task/s to edit");
+                        Console.WriteLine("------------------------");
+                    }
+                    else
+                    {
+                        Console.WriteLine("----- Here's the task/s -----");
+                        for (int i = 0; i < tasks.Count; i++)
+                            Console.WriteLine((i + 1) + ". " + tasks[i]);
+                        Console.WriteLine("------------------------");
 
-                    Console.Write("Enter the number of the task you want to edit: ");
-                    int editNum = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter the new task: ");
-                    string newTask = Console.ReadLine();
-                    taskApp.addEdit(editNum - 1, newTask);
-                    Console.WriteLine("Task Edited:)) ");
-                    Console.WriteLine("------------------------");
+                        Console.Write("Enter the number of the task you want to edit: ");
+                        int editNum = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter the new task: ");
+                        string newTask = Console.ReadLine();
+                        int editId = tasks[editNum - 1].Id;
+                        string message = taskApp.addEdit(editId, newTask);
+                        Console.WriteLine(message);
+                        Console.WriteLine("------------------------");
+                    }
                 }
                 else if (option == "4")
                 {
                     var tasks = taskApp.GetTasks();
-                    Console.WriteLine("----- Here's the task/s -----");
-                    for (int i = 0; i < tasks.Count; i++)
-                        Console.WriteLine((i + 1) + ". " + tasks[i]);
-                    Console.WriteLine("------------------------");
+                    if (tasks.Count == 0)
+                    {
+                        Console.WriteLine("No existing task/s to delete");
+                        Console.WriteLine("------------------------");
+                    }
+                    else
+                    {
+                        Console.WriteLine("----- Here's the task/s -----");
+                        for (int i = 0; i < tasks.Count; i++)
+                            Console.WriteLine((i + 1) + ". " + tasks[i]);
+                        Console.WriteLine("------------------------");
 
-                    Console.Write("Enter the number of the task you want to delete: ");
-                    int deleteNum = Convert.ToInt32(Console.ReadLine());
-                    taskApp.addDelete(deleteNum - 1);
-                    Console.WriteLine("Task Deleted:)) ");
-                    Console.WriteLine("------------------------");
+                        Console.Write("Enter the number of the task you want to delete: ");
+                        int deleteNum = Convert.ToInt32(Console.ReadLine());
+                        int deleteId = tasks[deleteNum - 1].Id;
+                        string message = taskApp.addDelete(deleteId);
+                        Console.WriteLine(message);
+                        Console.WriteLine("------------------------");
+                    }
                 }
                 else if (option == "5")
                 {
                     var tasks = taskApp.GetTasks();
-                    Console.WriteLine("----- Here's the task/s -----");
-                    for (int i = 0; i < tasks.Count; i++)
-                        Console.WriteLine((i + 1) + ". " + tasks[i]);
-                    Console.WriteLine("------------------------");
-
-                    Console.Write("Enter the number of the task you want to mark: ");
-                    int markNum = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Enter status (Done/Not Done): ");
-                    string status = Console.ReadLine();
-
-                    if (status != "Done" && status != "Not Done")
+                    if (tasks.Count == 0)
                     {
-                        Console.WriteLine("Invalid status! Please enter Done or Not Done.");
+                        Console.WriteLine("No existing task/s to mark");
+                        Console.WriteLine("------------------------");
                     }
                     else
                     {
-                      
-                        int actualId = tasks[markNum - 1].Id;
-                        bool success = taskApp.addMarkTask(actualId, status);
-                        if (success)
-                            Console.WriteLine("Task Marked:)) ");
+                        Console.WriteLine("----- Here's the task/s -----");
+                        for (int i = 0; i < tasks.Count; i++)
+                            Console.WriteLine((i + 1) + ". " + tasks[i]);
+                        Console.WriteLine("------------------------");
+
+                        Console.Write("Enter the number of the task you want to mark: ");
+                        int markNum = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter status (Done/Not Done): ");
+                        string status = Console.ReadLine();
+
+                        if (status != "Done" && status != "Not Done")
+                        {
+                            Console.WriteLine("Invalid status! Please enter Done or Not Done.");
+                        }
                         else
-                            Console.WriteLine("Task is already marked as " + status + "!");
+                        {
+                            int actualId = tasks[markNum - 1].Id;
+                            bool success = taskApp.addMarkTask(actualId, status);
+                            if (success)
+                                Console.WriteLine("Task Marked:))");
+                            else
+                                Console.WriteLine("Task is already marked as " + status + "!");
+                        }
+                        Console.WriteLine("------------------------");
                     }
-                    Console.WriteLine("------------------------");
                 }
                 else if (option == "6")
                 {
