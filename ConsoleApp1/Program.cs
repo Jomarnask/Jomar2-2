@@ -46,31 +46,37 @@ namespace TaskStatusProgram
                     }
                     Console.WriteLine("------------------------");
                 }
-                else if (option == "3")
+                else if (option == "3") // EDIT
                 {
                     var tasks = taskApp.GetTasks();
                     if (tasks.Count == 0)
                     {
                         Console.WriteLine("No existing task/s to edit");
-                        Console.WriteLine("------------------------");
                     }
                     else
                     {
                         Console.WriteLine("----- Here's the task/s -----");
                         for (int i = 0; i < tasks.Count; i++)
                             Console.WriteLine((i + 1) + ". " + tasks[i]);
-                        Console.WriteLine("------------------------");
+                     Console.WriteLine("------------------------");
 
-                        Console.Write("Enter the number of the task you want to edit: ");
-                        int editNum = Convert.ToInt32(Console.ReadLine());
-                        Console.Write("Enter the new task: ");
-                        string newTask = Console.ReadLine();
-                        int editId = tasks[editNum - 1].Id;
-                        string message = taskApp.addEdit(editId, newTask);
-                        Console.WriteLine(message);
-                        Console.WriteLine("------------------------");
+                     Console.Write("Enter the number of the task you want to edit: ");
+        
+                        if (int.TryParse(Console.ReadLine(), out int editNum) && editNum > 0 && editNum <= tasks.Count)
+                        {
+                          Console.Write("Enter the new task: ");
+                          string newTask = Console.ReadLine();
+                          int editId = tasks[editNum - 1].Id;
+                          Console.WriteLine(taskApp.addEdit(editId, newTask));
+                        }
+                    else
+                       {
+                          Console.WriteLine("Error: Invalid task number selection.");
+                       }
                     }
+                    Console.WriteLine("------------------------");
                 }
+                
                 else if (option == "4")
                 {
                     var tasks = taskApp.GetTasks();
@@ -87,12 +93,18 @@ namespace TaskStatusProgram
                         Console.WriteLine("------------------------");
 
                         Console.Write("Enter the number of the task you want to delete: ");
-                        int deleteNum = Convert.ToInt32(Console.ReadLine());
+                        
+                     if (int.TryParse(Console.ReadLine(), out int deleteNum) && deleteNum > 0 && deleteNum <= tasks.Count)
+                      {
                         int deleteId = tasks[deleteNum - 1].Id;
-                        string message = taskApp.addDelete(deleteId);
-                        Console.WriteLine(message);
-                        Console.WriteLine("------------------------");
+                        Console.WriteLine(taskApp.addDelete(deleteId));
+                      }
+                     else
+                      {
+                        Console.WriteLine("Error: Invalid task number selection.");
+                      }
                     }
+                        Console.WriteLine("------------------------");
                 }
                 else if (option == "5")
                 {
