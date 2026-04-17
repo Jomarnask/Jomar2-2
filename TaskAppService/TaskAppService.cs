@@ -1,4 +1,4 @@
-using TaskDataAccess;
+Using TaskDataAccess;
 using TaskModel;
 
 namespace TaskAppService
@@ -32,8 +32,8 @@ namespace TaskAppService
             {
                 return "Task cannot be empty";
             }
-            _db.Edit(id, newName);
-            return "Task edited successful";
+            bool success = _db.Edit(id, newName);
+            return success ? "Task updated!" : "Error: Task ID not found.";
         }
 
         public string addDelete(int id)
@@ -42,8 +42,8 @@ namespace TaskAppService
             {
                 return "Invalid id!";
             }
-            _db.Delete(id);
-            return "Task deleted successful";
+            bool success_db.Delete(id);
+            return success ? "Task deleted successful" : "Task ID not found.";
         }
 
         public bool addMarkTask(int id, string status)
