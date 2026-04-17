@@ -1,4 +1,4 @@
-Using TaskDataAccess;
+using TaskDataAccess;
 using TaskModel;
 
 namespace TaskAppService
@@ -42,7 +42,7 @@ namespace TaskAppService
             {
                 return "Invalid id!";
             }
-            bool success_db.Delete(id);
+            bool success=_db.Delete(id); 
             return success ? "Task deleted successful" : "Task ID not found.";
         }
 
