@@ -48,7 +48,10 @@ namespace TaskAppService
 
         public string addMarkTask(int id, string status)
         {
-             if (id <= 0) return "Invalid id!"; // Step 1: Validate
+             if (id <= 0) 
+             {
+                 return "Invalid id!"; // Step 1: Validate
+             }
              bool success = _db.Mark(id, status); // Step 2: Execute
              return success ? $"Task marked as {status}!" : "Task ID not found."; // Step 3: Respond
         }
