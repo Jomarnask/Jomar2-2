@@ -46,7 +46,7 @@ namespace TaskStatusProgram
                     }
                     Console.WriteLine("------------------------");
                 }
-                else if (option == "3") // EDIT
+                else if (option == "3")
                 {
                     var tasks = taskApp.GetTasks();
                     if (tasks.Count == 0)
@@ -115,34 +115,37 @@ namespace TaskStatusProgram
                         Console.WriteLine("------------------------");
                     }
                     else
-                    {
+                   {
                         Console.WriteLine("----- Here's the task/s -----");
                         for (int i = 0; i < tasks.Count; i++)
                             Console.WriteLine((i + 1) + ". " + tasks[i]);
                         Console.WriteLine("------------------------");
 
                         Console.Write("Enter the number of the task you want to mark: ");
-                        int markNum = Convert.ToInt32(Console.ReadLine());
-
-                        Console.Write("Enter status (Done/Not Done): ");
-                        string status = Console.ReadLine();
+        
+                       if (int.TryParse(Console.ReadLine(), out int markNum) && markNum > 0 && markNum <= tasks.Count)
+                    {
+                         Console.Write("Enter status (Done/Not Done): ");
+                         string status = Console.ReadLine();
 
                         if (status != "Done" && status != "Not Done")
                         {
-                            Console.WriteLine("Invalid status! Please enter Done or Not Done.");
+                          Console.WriteLine("Invalid status! Please enter Done or Not Done.");
                         }
                         else
                         {
-                            int actualId = tasks[markNum - 1].Id;
-                            bool success = taskApp.addMarkTask(actualId, status);
-                            if (success)
-                                Console.WriteLine("Task Marked:))");
-                            else
-                                Console.WriteLine("Task is already marked as " + status + "!");
+                          int actualId = tasks[markNum - 1].Id;
+                          string message = taskApp.addMarkTask(actualId, status);
+                          Console.WriteLine(message);
                         }
-                        Console.WriteLine("------------------------");
+                     }
+                         else
+                         {
+                           Console.WriteLine("Error: Please choose a valid number from the list above.");
+                         }
+                       }
+                           Console.WriteLine("------------------------");
                     }
-                }
                 else if (option == "6")
                 {
                     Console.WriteLine("Goodbye!");
