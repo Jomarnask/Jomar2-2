@@ -30,14 +30,16 @@ namespace TaskDataAccess
         }
         public void Add(string task)
         {
-            var tasks = Load();
-            tasks.Add(new TaskItem
-            {
-                Id = tasks.Count + 1,
-                Name = task,
-                Status = "Not Done"
-            });
-            Save(tasks);
+           var tasks = Load();
+           int newId = tasks.Any() ? tasks.Max(t => t.Id) + 1 : 1;
+           tasks.Add(new TaskItem
+        {
+           Id = newId,
+           Name = task,
+           Status = "Not Done"
+        });
+    
+          Save(tasks);
         }
         public bool Edit(int id, string newName)
         {
