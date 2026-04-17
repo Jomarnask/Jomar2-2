@@ -39,7 +39,7 @@ namespace TaskDataAccess
             });
             Save(tasks);
         }
-        public void Edit(int id, string newName)
+        public bool Edit(int id, string newName)
         {
             var tasks = Load();
             var task = tasks.FirstOrDefault(t => t.Id == id);
@@ -47,9 +47,11 @@ namespace TaskDataAccess
             {
                 task.Name = newName;  // ← correct
                 Save(tasks);
+                return true;
             }
+            return false;
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var tasks = Load();
             var task = tasks.FirstOrDefault(t => t.Id == id);
@@ -57,7 +59,9 @@ namespace TaskDataAccess
             {
                 tasks.Remove(task);
                 Save(tasks);
+                return true;
             }
+            return false;
         }
         public bool Mark(int id, string status)
         {
