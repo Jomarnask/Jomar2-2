@@ -60,7 +60,7 @@ namespace TaskStatusProgram
                             Console.WriteLine((i + 1) + ". " + tasks[i]);
                      Console.WriteLine("------------------------");
 
-                     Console.Write("Enter the number of the task you want to edit: ");
+                     Console.Write("Enter the number/ID of the task you want to edit: ");
         
                         if (int.TryParse(Console.ReadLine(), out int editNum) && editNum > 0 && editNum <= tasks.Count)
                         {
@@ -71,7 +71,7 @@ namespace TaskStatusProgram
                         }
                     else
                        {
-                          Console.WriteLine("Error: Invalid task number selection.");
+                          Console.WriteLine("Error: Invalid task number/ID selection.");
                        }
                     }
                     Console.WriteLine("------------------------");
@@ -92,7 +92,7 @@ namespace TaskStatusProgram
                             Console.WriteLine((i + 1) + ". " + tasks[i]);
                         Console.WriteLine("------------------------");
 
-                        Console.Write("Enter the number of the task you want to delete: ");
+                        Console.Write("Enter the number/ID of the task you want to delete: ");
                         
                      if (int.TryParse(Console.ReadLine(), out int deleteNum) && deleteNum > 0 && deleteNum <= tasks.Count)
                       {
@@ -101,7 +101,7 @@ namespace TaskStatusProgram
                       }
                      else
                       {
-                        Console.WriteLine("Error: Invalid task number selection.");
+                        Console.WriteLine("Error: Invalid task number/ID selection.");
                       }
                     }
                         Console.WriteLine("------------------------");
@@ -121,7 +121,7 @@ namespace TaskStatusProgram
                             Console.WriteLine((i + 1) + ". " + tasks[i]);
                         Console.WriteLine("------------------------");
 
-                        Console.Write("Enter the number of the task you want to mark: ");
+                        Console.Write("Enter the number/ID of the task you want to mark: ");
         
                        if (int.TryParse(Console.ReadLine(), out int markNum) && markNum > 0 && markNum <= tasks.Count)
                     {
