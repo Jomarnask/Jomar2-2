@@ -5,7 +5,7 @@ namespace TaskAppService
 {
     public class TaskAppService
     {
-        private TaskJSONData _db = new TaskJSONData();
+        private TaskDBData _db = new TaskDBData();
 
         public List<TaskItem> GetTasks()
         {
