@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TaskDataAccess;
 using TaskModel;
 
@@ -7,53 +8,32 @@ namespace TaskAppService
     {
         private TaskDBData _db = new TaskDBData();
 
-        public List<TaskItem> GetTasks()
-        {
-            return _db.GetAll();
-        }
+        public List<TaskItem> GetTasks() => _db.GetAll();
 
         public string addTask(string task)
         {
-            if (string.IsNullOrWhiteSpace(task)) 
-            {
-                return "Task cannot be empty";
-            }
+            if (string.IsNullOrWhiteSpace(task)) return "Error: Task cannot be empty.";
             _db.Add(task);
-            return "Task added successful";
+            return "Task added successfully!";
         }
 
         public string addEdit(int id, string newName)
         {
-            if(id <= 0)
-            {
-                return "Invalid id!";
-            }
-            if (string.IsNullOrWhiteSpace(newName))
-            {
-                return "Task cannot be empty";
-            }
-            bool success = _db.Edit(id, newName);
-            return success ? "Task updated!" : "Error: Task ID not found.";
+            if (id <= 0) return "Error: Invalid ID.";
+            if (string.IsNullOrWhiteSpace(newName)) return "Error: Name cannot be empty.";
+            return _db.Edit(id, newName) ? "Task updated!" : "Error: Task not found.";
         }
 
         public string addDelete(int id)
         {
-            if (id <= 0) 
-            {
-                return "Invalid id!";
-            }
-            bool success=_db.Delete(id); 
-            return success ? "Task deleted successful" : "Task ID not found.";
+            if (id <= 0) return "Error: Invalid ID.";
+            return _db.Delete(id) ? "Task deleted successfully!" : "Error: Task not found.";
         }
 
         public string addMarkTask(int id, string status)
         {
-             if (id <= 0) 
-             {
-                 return "Invalid id!"; // Step 1: Validate
-             }
-             bool success = _db.Mark(id, status); // Step 2: Execute
-             return success ? $"Task marked as {status}!" : "Task ID not found."; // Step 3: Respond
+            if (id <= 0) return "Error: Invalid ID.";
+            return _db.Mark(id, status) ? $"Task marked as {status}!" : "Error: Task not found.";
         }
     }
 }
