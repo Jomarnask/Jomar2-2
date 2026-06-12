@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36930.0 d17.14
+VisualStudioVersion = 17.14.36930.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{5863B731-E138-40F7-8BC3-A4438C728B02}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskDataAccess", "..\TaskDataAccess\TaskDataAccess.csproj", "{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskAPI", "..\taskAPI\taskAPI.csproj", "{DC27764E-903E-A0C3-33DF-C087EE6B601A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7438E54A-B6F4-4C0F-8EC5-8D2ADEFAB8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC27764E-903E-A0C3-33DF-C087EE6B601A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC27764E-903E-A0C3-33DF-C087EE6B601A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC27764E-903E-A0C3-33DF-C087EE6B601A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC27764E-903E-A0C3-33DF-C087EE6B601A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

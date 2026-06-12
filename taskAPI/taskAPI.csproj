@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TaskAppService">
+      <HintPath>..\..\Jomar2-2\ConsoleApp1\bin\Debug\net8.0\TaskAppService.dll</HintPath>
+    </Reference>
+    <Reference Include="TaskDataAccess">
+      <HintPath>..\..\Jomar2-2\ConsoleApp1\bin\Debug\net8.0\TaskDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="TaskModel">
+      <HintPath>..\..\Jomar2-2\ConsoleApp1\bin\Debug\net8.0\TaskModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
