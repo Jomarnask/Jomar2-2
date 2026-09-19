@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
@@ -16,10 +16,10 @@ namespace taskAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<TaskModel.TaskItem>> GetAllAccounts()
+        public ActionResult<IEnumerable<TaskModel.TaskItem>> GetAllTasks()
         {
-            var accounts = _appservice.GetTasks();
-            return Ok(accounts);
+            var tasks = _appservice.GetTasks();
+            return Ok(tasks);
         }
 
         [HttpPost]
@@ -40,12 +40,12 @@ namespace taskAPI.Controllers
         {
             string result = _appservice.addEdit(id, newName);
 
-            if (result == "Invalid id!" || result == "Task cannot be empty")
+            if (result == "Error: Invalid ID." || result == "Error: Name cannot be empty.")
             {
                 return BadRequest(new { error = result });
             }
 
-            if (result == "Error: Task ID not found.")
+            if (result == "Error: Task not found.")
             {
                 return NotFound(new { error = result });
             }
@@ -58,12 +58,12 @@ namespace taskAPI.Controllers
         {
             string result = _appservice.addDelete(id);
 
-            if (result == "Invalid id!")
+            if (result == "Error: Invalid ID.")
             {
                 return BadRequest(new { error = result });
             }
 
-            if (result == "Task ID not found.")
+            if (result == "Error: Task not found.")
             {
                 return NotFound(new { error = result });
             }
@@ -76,12 +76,12 @@ namespace taskAPI.Controllers
         {
             string result = _appservice.addMarkTask(id, status);
 
-            if (result == "Invalid id!")
+            if (result == "Error: Invalid ID.")
             {
                 return BadRequest(new { error = result });
             }
 
-            if (result == "Task ID not found.")
+            if (result == "Error: Task not found.")
             {
                 return NotFound(new { error = result });
             }

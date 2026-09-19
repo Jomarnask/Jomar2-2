@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +47,7 @@ namespace TaskDataAccess
             var task = tasks.FirstOrDefault(t => t.Id == id);
             if (task != null)
             {
-                task.Name = newName;  // ← correct
+                task.Name = newName;
                 Save(tasks);
                 return true;
             }
