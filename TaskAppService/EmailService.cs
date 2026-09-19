@@ -1,4 +1,4 @@
-﻿using MailKit.Net.Smtp;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
@@ -16,11 +16,15 @@ namespace TaskAppService
 
         public void SendTaskNotification(string recipientEmail, string taskName, string action)
         {
+            string fromName = _configuration["EmailSettings:FromName"] ?? "Task App System";
+            string fromEmail = _configuration["EmailSettings:FromEmail"] ?? "notifications@taskapp.com";
+            string smtpHost = _configuration["EmailSettings:SmtpHost"] ?? "sandbox.smtp.mailtrap.io";
+            int smtpPort = int.TryParse(_configuration["EmailSettings:SmtpPort"], out int port) ? port : 2525;
+            string username = _configuration["EmailSettings:Username"] ?? string.Empty;
+            string password = _configuration["EmailSettings:Password"] ?? string.Empty;
+
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(
-                _configuration["EmailSettings:FromName"],
-                _configuration["EmailSettings:FromEmail"]
-            ));
+            message.From.Add(new MailboxAddress(fromName, fromEmail));
             message.To.Add(new MailboxAddress("Task User", recipientEmail));
             message.Subject = $"Task Status Alert: {action}";
             message.Body = new TextPart("plain")
@@ -33,17 +37,47 @@ namespace TaskAppService
 
             using (var client = new SmtpClient())
             {
-                client.Connect(
-                    _configuration["EmailSettings:SmtpHost"],
-                    int.Parse(_configuration["EmailSettings:SmtpPort"]),
-                    SecureSocketOptions.StartTls
-                );
+                client.Connect(smtpHost, smtpPort, SecureSocketOptions.StartTls);
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    client.Authenticate(username, password);
+                }
+                client.Send(message);
+                client.Disconnect(true);
+            }
+        }
 
-                client.Authenticate(
-                    _configuration["EmailSettings:Username"],
-                    _configuration["EmailSettings:Password"]
-                );
+        public void SendTaskNotification(string taskName, string action)
+        {
+            string recipient = _configuration["EmailSettings:RecipientEmail"] ?? "testuser@example.com";
+            SendTaskNotification(recipient, taskName, action);
+        }
 
+        public void SendSimpleNotification(string recipientEmail, string messageText, string subject = "Task Notification")
+        {
+            string fromName = _configuration["EmailSettings:FromName"] ?? "Task App System";
+            string fromEmail = _configuration["EmailSettings:FromEmail"] ?? "notifications@taskapp.com";
+            string smtpHost = _configuration["EmailSettings:SmtpHost"] ?? "sandbox.smtp.mailtrap.io";
+            int smtpPort = int.TryParse(_configuration["EmailSettings:SmtpPort"], out int port) ? port : 2525;
+            string username = _configuration["EmailSettings:Username"] ?? string.Empty;
+            string password = _configuration["EmailSettings:Password"] ?? string.Empty;
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(fromName, fromEmail));
+            message.To.Add(new MailboxAddress("Task User", recipientEmail));
+            message.Subject = subject;
+            message.Body = new TextPart("plain")
+            {
+                Text = messageText
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect(smtpHost, smtpPort, SecureSocketOptions.StartTls);
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    client.Authenticate(username, password);
+                }
                 client.Send(message);
                 client.Disconnect(true);
             }

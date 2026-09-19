@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using TaskAppService;
 
 namespace TaskStatusProgram
@@ -8,7 +9,13 @@ namespace TaskStatusProgram
     {
         static void Main(string[] args)
         {
-            TaskAppService.TaskAppService taskApp = new TaskAppService.TaskAppService();
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            EmailService emailService = new EmailService(configuration);
+            TaskAppService.TaskAppService taskApp = new TaskAppService.TaskAppService(emailService, configuration);
 
             while (true)
             {
